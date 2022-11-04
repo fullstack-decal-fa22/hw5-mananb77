@@ -1,7 +1,7 @@
-import {_________} from "react";
+import {useState, useEffect} from "react";
 import axios from "axios";
 
-const NewPost = ({ _________ }) => {
+const NewPost = ({ updatePost }) => {
   const [id, setId] = useState();
   const [title, setTitle] = useState();
   const [body, setBody] = useState();
@@ -13,7 +13,11 @@ const NewPost = ({ _________ }) => {
       body
     })
 
-    axios.post(_________, _________).then(_________);
+    // We want to create the newPost, then instantly update its contents
+    axios.post("http://localhost:3002/post", newPost).then(() => updatePost());
+    setId('');
+    setTitle('');
+    setBody('');
   }
 
   return <div>
